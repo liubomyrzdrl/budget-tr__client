@@ -77,8 +77,8 @@ const EntryItem: React.FC<EntryItemType> = memo(
           amount: amountData,
           userId,
           date,
-        })
-  
+        })    
+         setEdit(false)
       } catch (error) {
         console.log("error", error)
       }

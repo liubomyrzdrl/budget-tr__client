@@ -18,7 +18,7 @@ import {
   DeleteEntrySuccessPayload,
   CombinedEntriesPayloads,
 } from "./entriesActions";
-import { EntrieType } from "../../types";
+import { EntrieType, EntrySingleType } from "../../types";
 
 
 export interface EntryStateType {
@@ -100,7 +100,7 @@ const entriesReducer = handleActions<EntryStateType, CombinedEntriesPayloads>(
 
     [updateEntrySuccess.toString()]: (
       state,
-      { payload }: Action<any>
+      { payload }: Action<UpdateEntrySuccessPayload>
     ): EntryStateType => {
       return {
         ...state,
@@ -132,9 +132,8 @@ const entriesReducer = handleActions<EntryStateType, CombinedEntriesPayloads>(
 
     [deleteEntrySuccess.toString()]: (
       state,
-      { payload }: Action<any>
+      { payload }: Action<DeleteEntrySuccessPayload>
     ): EntryStateType => {
-      console.log("Uodate Delete", payload);
       return {
         ...state,
         items: state.items?.filter((item) => item.id !== payload),

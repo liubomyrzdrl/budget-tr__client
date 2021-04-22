@@ -1,14 +1,15 @@
 import { createAction } from "redux-actions";
-import { EntrieType } from "../../types";
+import { EntrieType, EntrySingleType } from "../../types";
 
 const GET_ENTRIES_START = "GET_ENTRIES_START";
 const GET_ENTRIES_SUCCESS = "GET_ENTRIES_SUCCESS";
 const GET_ENTRIES_ERROR = "GET_ENTRIES_ERROR";
 
-export type GetEntriesSuccessPayload = Array<EntrieType>;
-export type CreateEntrySuccessPayload = EntrieType;
-export type UpdateEntrySuccessPayload = EntrieType;
-export type DeleteEntrySuccessPayload = number;
+export type GetEntriesSuccessPayload = Array<EntrieType>
+export type CreateEntrySuccessPayload = EntrieType
+ export type UpdateEntrySuccessPayload = EntrySingleType
+
+export type DeleteEntrySuccessPayload = number
 
 export type CombinedEntriesPayloads =  GetEntriesSuccessPayload & CreateEntrySuccessPayload  & UpdateEntrySuccessPayload & DeleteEntrySuccessPayload
 

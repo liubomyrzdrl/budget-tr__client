@@ -11,11 +11,7 @@ export interface UserStateType {
   isSuccess?: boolean
   isError?: boolean | null
   error?: boolean | null
-  user?: UserSingleType | null
-  // email: string
-  // id: number
-  // password: string
-  // username: string
+  user: UserSingleType |null
 }
 
 const INITIAL_STATE = {
@@ -28,7 +24,7 @@ const INITIAL_STATE = {
 }
 
 
-export default handleActions<UserStateType>({
+export default handleActions<UserStateType, GetUserSuccessPayload>({
     [getUserStart.toString()]: (state): UserStateType => {
       console.log('STATE', state);
       return {
@@ -37,14 +33,13 @@ export default handleActions<UserStateType>({
           isError: false,
      
       };
-    },
-    //@ts-ignore
+    }, 
+
     [combineActions(
-      getUserSuccess.toString(),
-      loginSuccess.toString(),
-      registerSuccess.toString(),
-    )]: (state, { payload }: Action<any>): UserStateType => {
-      console.log("REDUCER", payload)
+      getUserSuccess,
+      loginSuccess,
+      registerSuccess,
+    ) as any]: (state, { payload }: Action<GetUserSuccessPayload>): UserStateType => {
        return { 
          ...state,
         isLoading: false,
@@ -52,15 +47,6 @@ export default handleActions<UserStateType>({
         user: payload,
       }
     },
-    // [getUserSuccess.toString()]: (state, { payload }: Action<any>): UserStateType => {
-    //   console.log("REDUCER", payload)
-    //    return { 
-    //      ...state,
-    //     isLoading: false,
-    //     isError: false,
-    //     user: payload,
-    //   }
-    // },
 
     [getUserError.toString()]: (state): UserStateType => ({
         ...state,       
@@ -70,3 +56,4 @@ export default handleActions<UserStateType>({
   },
   INITIAL_STATE,
 );
+

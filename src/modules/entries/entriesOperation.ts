@@ -62,13 +62,11 @@ export function createEntry(entrie: EntrieType): EntryThunkType {
 
 export function updateEntry(entrie: EntrieType): EntryThunkType {
   return async function updateEntryThunk(
-    dispatch: Dispatch<Action<void> | Action<EntrieType>>
+    dispatch: Dispatch<Action<void> | Action<EntrySingleType>>
   ) {
     try {
       dispatch(updateEntryStart());
-
       const data = await ApiEntries.updateEntry(entrie);
-  
       dispatch(updateEntrySuccess(data.data))
     } catch (error) {
       dispatch(updateEntryError());

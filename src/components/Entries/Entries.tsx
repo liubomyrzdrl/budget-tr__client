@@ -71,10 +71,11 @@ const Entries: React.FC<EntriesType> = ({
       <Box display="flex" justifyContent="center" >
         <Formik
           initialValues={{
+            date:"",
             catagorie: "",
             amount: "",
           }}
-          onSubmit={async (actions) => {
+          onSubmit={async (values, actions) => {
             try {
               await createEntry({
                 amount,
@@ -95,7 +96,7 @@ const Entries: React.FC<EntriesType> = ({
               <Box display="flex">
                 <Box mr={25}>
                   <TextField
-                    {...props}
+            
                     id="date"
                     label="Trecker"
                     onChange={handeleDate}
@@ -156,7 +157,6 @@ const Entries: React.FC<EntriesType> = ({
       <Box>
         <Route path={`/e/:userId/:date`}>
           <EntriesList
-            // userId={user.id}
             {...{ getEntries }}
             {...{ updateEntry }}
             {...{ deleteEntry }}

@@ -21,8 +21,8 @@ export interface UserType {
 export interface UserSingleType {   
        id?: number
        username?: string
-       email: string
-       password: string      
+       email?: string
+       password?: string      
 }
 export interface EntrySingleType {   
    id?: number

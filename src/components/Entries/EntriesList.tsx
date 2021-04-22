@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     borderCollapse: "separate",
     borderSpacing: "10px",
   },
-});
+})
 
 type EntriesItemsType = {
   isLoadingEntries: boolean
@@ -37,7 +37,6 @@ const EntriesItems: React.FC<EntriesItemsType> = ({
   updateEntry,
   deleteEntry,
   entries,
-  // isLoadingEntries,
 }) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -54,10 +53,6 @@ const EntriesItems: React.FC<EntriesItemsType> = ({
   useEffect(() => {
     getEntries(userId, date);
   }, [getEntries, date, userId]);
-
-  // if (isLoadingEntries) {
-  //   return <div>Loading ...</div>;
-  // }
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -81,11 +76,12 @@ const EntriesItems: React.FC<EntriesItemsType> = ({
           <TableBody>
             {rows.map((row) => (
               <EntryItem
+                key={row.id}
                 {...row}
                 {...{ userId }}
                 {...{ updateEntry }}
                 {...{ deleteEntry }}
-                // {...{ isLoadingEntries }}
+         
               />
             ))}
           </TableBody>
@@ -93,7 +89,7 @@ const EntriesItems: React.FC<EntriesItemsType> = ({
       </TableContainer>
       <TablePagination
           className="table-pagination"          
-          rowsPerPageOptions={[3, 6, 12]}
+          rowsPerPageOptions={[5, 10, 15]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
