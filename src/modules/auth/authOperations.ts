@@ -17,13 +17,15 @@ export function login(body: UserSingleType):AuthThunkType {
   return async function loginThunk(dispatch: Dispatch<Action<UserSingleType | void>>) {
     try {
       dispatch(loginStart());    
+      // debugger
       const res = await ApiAuth.login(body);
       const token = res.data.token;
       ApiAuth.setToken(token);
       window.localStorage.setItem('token', String(token));
       dispatch(loginSuccess(res.data.data))
     } catch (err) {
-      dispatch(loginError(err));
+      dispatch(loginError(err.response.data.error.message))
+      throw new Error('Login Error')
     }
   };
 }
@@ -41,8 +43,9 @@ export function register(body: UserSingleType): AuthThunkType {
 
       dispatch(registerSuccess(res.data.data));
     } catch (err) {
-      dispatch(registerError(err));
-      //dispatch(actions.register.error({ message: err}));
+      dispatch(registerError(err.response.data.error.message));
+      throw new Error('Register Error')
+  
     }
   };
 }

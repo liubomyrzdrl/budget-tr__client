@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box } from "@material-ui/core";
 import Entries from "./Entries/Entries";
-import { useHistory } from "react-router-dom";
 import { ApiAuth } from "../api";
 import { connect } from "react-redux";
 import {

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Button, TextField, makeStyles } from "@material-ui/core";
-
+import red from "@material-ui/core/colors/red";
 import { Formik, Form, FormikHelpers } from "formik";
 import FormField from "../components/Form/FromField";
 import { connect } from "react-redux";
@@ -20,31 +20,51 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1),
     width: 200,
   },
-}));
+}))
 
-type AddBankFormType = {
+type SendRegisterType = {
+  username: string
+  email: string 
+  password: string
+}
+
+type AuthRegisterType = {
   handleSubmit: (values: any, actions: FormikHelpers<any>) => any
   setIsAddBank: (isOk: boolean) => void
-  register: any
+  register: (body: SendRegisterType) => any
   isLoading: boolean
+  isError: boolean
+  error: string
 };
 
-const Register: React.FC<AddBankFormType> = ({ register, isLoading }) => {
+const Register: React.FC<AuthRegisterType> = ({ register, isLoading, isError, error }) => {
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
+
+  const [errorRgister, setErrorRegister] = useState(error);
   const history = useHistory()
   const classes = useStyles()
 
+  useEffect(() => {
+    if (isError) {
+      setErrorRegister(error)
+    }     
+  }, [error, history, isError]);
+  
+
   function handleUsername(e: React.ChangeEvent<HTMLInputElement>) {
+    setErrorRegister("")
     setUsername(e.target.value);
   }
 
   function handleEmail(e: React.ChangeEvent<HTMLInputElement>) {
+    setErrorRegister("")
     setEmail(e.target.value);
   }
 
   function handlePassword(e) {
+    setErrorRegister("")
     setPassword(e.target.value);
   }
   return (
@@ -80,10 +100,9 @@ const Register: React.FC<AddBankFormType> = ({ register, isLoading }) => {
                 username,
                 email,
                 password,
-              });
-              setUsername("");
-              setEmail("");
-              setPassword("");
+              })
+              history.push("/")
+  
             } catch (error) {
               console.log("error", error);
             }
@@ -116,6 +135,9 @@ const Register: React.FC<AddBankFormType> = ({ register, isLoading }) => {
                     className={classes.textField}
                   />
                 </Box>            
+                  <Box color={red[200]} mt={1}>
+                    {errorRgister}
+                  </Box>
                   <Box mt={4} mb={2}>
                     <Button type="submit" variant="contained" color="primary" disabled={username ==='' || email === '' || password === ''}>
                     {isLoading ? "Loading ..."  :"Register" }
@@ -137,6 +159,8 @@ const Register: React.FC<AddBankFormType> = ({ register, isLoading }) => {
 const mapStateToProps = (state: MainStateType) => {
   return {
     isLoading: state.authReducer.register.isLoading,
+    isError: state.authReducer.register.isError,
+    error: state.authReducer.register.error,
   };
 };
 

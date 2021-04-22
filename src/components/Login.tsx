@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useState,  useEffect } from "react";
 import { Formik, Form, FormikHelpers } from "formik";
-import FormField from "../components/Form/FromField";
+
 import { Box, Button, TextField, makeStyles } from "@material-ui/core";
 import red from "@material-ui/core/colors/red";
 import { login } from "../modules/auth/authOperations";
 import { connect } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
 import green from "@material-ui/core/colors/green";
-import { MainStateType } from "../store/createState";
+
 import AuthHeader from "./AuthHeader";
+
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -22,28 +23,41 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-type AddBankFormType = {
-  handleSubmit: (values: any, actions: FormikHelpers<any>) => any;
-  setIsAddBank: (isOk: boolean) => void;
-  login: any;
-  isLoading: boolean;
-  isError: boolean;
+type SendLoginType = {
+  email: string 
+  password: string
+}
+
+type AuthLoginType = {
+  handleSubmit: (values: any, actions: FormikHelpers<any>) => any
+  setIsAddBank: (isOk: boolean) => void
+  login: (body: SendLoginType) => any
+  isLoading: boolean
+  isError: boolean
+  error: string
 };
 
-const Login: React.FC<AddBankFormType> = ({ login, isLoading, isError }) => {
+const Login: React.FC<AuthLoginType> = ({ login, isLoading, isError, error }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorLogin, setErrorLogin] = useState(false);
+
+  const [errorLogin, setErrorLogin] = useState(error);
   const history = useHistory();
   const classes = useStyles();
 
+  useEffect(() => {
+    if (isError) {
+      setErrorLogin(error)
+    }     
+  }, [error, history, isError]);
+
   function handleEmail(e: React.ChangeEvent<HTMLInputElement>) {
-    setErrorLogin(false);
+    setErrorLogin("");
     setEmail(e.target.value);
   }
 
   function handlePassword(e: React.ChangeEvent<HTMLInputElement>) {
-    setErrorLogin(false);
+    setErrorLogin("");
     setPassword(e.target.value);
   }
   return (
@@ -71,7 +85,7 @@ const Login: React.FC<AddBankFormType> = ({ login, isLoading, isError }) => {
           display="flex"
           alignItems="center"
         >
-        <AuthHeader />
+          <AuthHeader />
         </Box>
         <Box>
           <h1>Login</h1>
@@ -82,22 +96,15 @@ const Login: React.FC<AddBankFormType> = ({ login, isLoading, isError }) => {
             password: "",
           }}
           onSubmit={async (values, actions) => {
-            try {
-              const res = await login({
+            try {      
+               await login({
                 email,
                 password,
-              });
-              console.log("RES server", res);
-      
-              if (isError) {
-                setEmail("");
-                setPassword("");
-              }
-              
+              })    
+              history.push('/')         
             } catch (error) {
-              console.log("Error Login", error);
-            }
-            history.push("/");
+              console.log("Error Login", error)
+            }           
           }}
         >
           {(props) => (
@@ -119,11 +126,11 @@ const Login: React.FC<AddBankFormType> = ({ login, isLoading, isError }) => {
                     className={classes.textField}
                   />
                 </Box>
-                {isError && (
+              
                   <Box color={red[200]} mt={1}>
-                    Wrong email or password
+                    {errorLogin}
                   </Box>
-                )}
+               
 
                 <Box mt={4} mb={2}>
                   <Button
@@ -151,10 +158,11 @@ const mapStateToProps = (state) => {
   return {
     isLoading: state.authReducer.login.isLoading,
     isError: state.authReducer.login.isError,
+    error: state.authReducer.login.error,
   };
 };
 const mapDispatchToProps = {
   login,
-};
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

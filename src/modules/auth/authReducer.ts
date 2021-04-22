@@ -9,14 +9,14 @@ import {
 } from "./authActions";
 
 type LoginRegisterType = {
-  isLoading: boolean;
-  isError: boolean;
-  error: boolean | null;
+  isLoading: boolean
+  isError: boolean
+  error?: any
 }
 
 export type AuthStateType = {
-  login: LoginRegisterType;
-  register: LoginRegisterType;
+  login: LoginRegisterType
+  register: LoginRegisterType
 }
 
 const INITIAL_STATE = {
@@ -56,12 +56,14 @@ export default handleActions<AuthStateType>(
       },
     }),
 
-    [loginError.toString()]: (state: AuthStateType) => ({
+    [loginError.toString()]: (state, {payload}): AuthStateType=> ({
       ...state,
       login: {
         ...state.login,
         isLoading: false,
         isError: true,
+        error: payload
+
       },
     }),
 
@@ -77,7 +79,7 @@ export default handleActions<AuthStateType>(
       };
     },
 
-    [registerSuccess.toString()]: (state: AuthStateType) => ({
+    [registerSuccess.toString()]: (state: AuthStateType,) => ({
       ...state,
       register: {
         ...state.register,
@@ -86,12 +88,13 @@ export default handleActions<AuthStateType>(
       },
     }),
 
-    [registerError.toString()]: (state: AuthStateType) => ({
+    [registerError.toString()]: (state, { payload }): AuthStateType => ({
       ...state,
       register: {
         ...state.register,
         isLoading: false,
         isError: true,
+        error: payload
       },
     }),
   },
