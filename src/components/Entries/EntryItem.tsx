@@ -62,7 +62,7 @@ const EntryItem: React.FC<EntryItemType> = memo(
     function handleCategorie(e: React.ChangeEvent<HTMLInputElement>) {
       console.log(e.target.value)
       setCatagorieData(e.target.value)
-      console.log("catagorieData",catagorieData)
+    
     }
 
     function handleAmount(e: React.ChangeEvent<HTMLInputElement>) {
@@ -112,7 +112,7 @@ const EntryItem: React.FC<EntryItemType> = memo(
             <TableCell>
               <TextField
                 id="standard-size-small"
-                value={amountData}             
+                value={amountData ? amountData : ""}             
                 helperText={
                   catagorieData === "" && "Empty input is not allowed"
                 }

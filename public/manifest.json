@@ -1,6 +1,6 @@
 {
-  "short_name": "Mortage App",
-  "name": "Mortage App",
+  "short_name": "bud_tracker",
+  "name": "Budget Tracker",
   "icons": [
     {
       "src": "morimage.ico",

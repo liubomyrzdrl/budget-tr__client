@@ -117,7 +117,7 @@ const Entries: React.FC<EntriesType> = ({
                     <TextField
                       label="amount"
                       onChange={handeleAmount}
-                      value={amount}
+                      value={amount ? amount : ""}
                       type="number"
                       placeholder="Spent Amount ($)"
                       className={classes.textField}
