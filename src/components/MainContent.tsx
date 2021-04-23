@@ -49,7 +49,7 @@ const MainContent = ({
           )
 
       ) : (
-        <Box>
+        <Box display="flex" justifyContent="center" >
             <img src="/budget.png" alt="budget"/>
         </Box>
       )}

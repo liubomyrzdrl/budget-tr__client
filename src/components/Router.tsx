@@ -1,8 +1,8 @@
 import React from "react"
 import { Switch, Route } from "react-router-dom"
 import Main from "../components/MainContent"
-import Register from "./Register"
-import Login from "./Login"
+import Register from "../pages/Register"
+import Login from "../pages/Login"
 import { Box } from "@material-ui/core"
 
 

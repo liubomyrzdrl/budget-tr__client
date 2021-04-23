@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { register } from "../modules/auth/authOperations";
 import { useHistory, Link } from "react-router-dom";
 import { MainStateType } from "../store/createState";
-import AuthHeader from "./AuthHeader";
+import AuthHeader from "../components/AuthHeader";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -168,5 +168,4 @@ const mapDispatchToProps = {
   register,
 };
 
-//export default  Register
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

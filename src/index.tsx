@@ -7,15 +7,13 @@ import reportWebVitals from "./reportWebVitals";
 import MainRoute from "./components/Router";
 import Main from "./pages/Main"
 import store from "./store/createState";
-import { createBrowserHistory } from "history"
 
-const hystory = createBrowserHistory()
+
 
 ReactDOM.render(
   <BrowserRouter >
     <Provider store={store}>
       <Main />
-      {/* <MainRoute /> */}
     </Provider>
   </BrowserRouter>,
 

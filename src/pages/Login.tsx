@@ -6,7 +6,8 @@ import { login } from "../modules/auth/authOperations"
 import { connect } from "react-redux"
 import { useHistory, Link } from "react-router-dom"
 import green from "@material-ui/core/colors/green"
-import AuthHeader from "./AuthHeader"
+import AuthHeader from "../components/AuthHeader"
+import { MainStateType } from "../store/createState"
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -151,7 +152,7 @@ const Login: React.FC<AuthLoginType> = ({ login, isLoading, isError, error }) =>
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: MainStateType) => {
   return {
     isLoading: state.authReducer.login.isLoading,
     isError: state.authReducer.login.isError,

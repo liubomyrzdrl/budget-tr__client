@@ -23,7 +23,7 @@ class Main extends React.Component<MainType> {
     if (this.props.isLoading) {
       return (
         <Box display="flex" justifyContent="center" alignItems="center" height="100vh">           
-           <img src="/spinner.gif" alt=""/>
+           <img src="/spinner.gif" alt="loading"/>
         </Box>
       )       
     }
