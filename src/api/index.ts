@@ -1,13 +1,8 @@
 import axios from 'axios'
 import { EntrieType, UserType, UserSingleType, EntrySingleType } from "../types"
-import { EntryStateType } from '../modules/entries/entriesReducer'
 
 
 type TokenType = string
-type AuthDataType = {
-    data: Array<UserType>
-    token: string
-}
 type AuthEntrieDataType = {
     data: Array<EntrieType>
     token: string
