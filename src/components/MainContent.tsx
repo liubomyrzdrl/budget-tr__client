@@ -24,7 +24,7 @@ const MainContent = ({
   const [isLogin, setIslogin] = useState(ApiAuth.isLoggedIn())
 
    useEffect(() => {
-    window.addEventListener("click", (e: React.ChangeEvent<HTMLInputElement>) => {
+    window.addEventListener("click", (e: MouseEvent) => {
       if(e.target.classList.contains('logout')) {
         setIslogin(false)     
       }
@@ -34,9 +34,8 @@ const MainContent = ({
     <Layout> 
     <Box mb={5}>
       {isLogin? (
-        // <>
           isLoadingUser ? (
-            <h1>Loading...</h1>
+            <Box><img src="/load.gif" alt="loader"/></Box>
           ) : (
             <Entries
               {...{ user }}
@@ -48,9 +47,11 @@ const MainContent = ({
               {...{ deleteEntry }}
             />
           )
-        // </>
+
       ) : (
-        <div>Not Login</div>
+        <Box>
+            <img src="/budget.png" alt="budget"/>
+        </Box>
       )}
     </Box>
     </Layout>

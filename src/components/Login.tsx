@@ -1,15 +1,12 @@
-import React, { useState,  useEffect } from "react";
-import { Formik, Form, FormikHelpers } from "formik";
-
-import { Box, Button, TextField, makeStyles } from "@material-ui/core";
-import red from "@material-ui/core/colors/red";
-import { login } from "../modules/auth/authOperations";
-import { connect } from "react-redux";
-import { useHistory, Link } from "react-router-dom";
-import green from "@material-ui/core/colors/green";
-
-import AuthHeader from "./AuthHeader";
-
+import React, { useState,  useEffect } from "react"
+import { Formik, Form, FormikHelpers } from "formik"
+import { Box, Button, TextField, makeStyles } from "@material-ui/core"
+import red from "@material-ui/core/colors/red"
+import { login } from "../modules/auth/authOperations"
+import { connect } from "react-redux"
+import { useHistory, Link } from "react-router-dom"
+import green from "@material-ui/core/colors/green"
+import AuthHeader from "./AuthHeader"
 
 const useStyles = makeStyles((theme) => ({
   container: {

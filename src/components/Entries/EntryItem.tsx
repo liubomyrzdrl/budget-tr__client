@@ -177,7 +177,6 @@ const EntryItem: React.FC<EntryItemType> = memo(
             </Button>
           )}
         </TableCell>
-        <TableCell></TableCell>
       </TableRow>
     )
   }

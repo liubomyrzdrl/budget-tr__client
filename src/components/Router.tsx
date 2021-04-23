@@ -13,7 +13,7 @@ const MainRoute: React.FC<{}> = () => {
         <Route path="/login">
           <Login />
         </Route>
-        <Route exact path="/register">
+        <Route path="/register">
           <Register />
         </Route>
         <Route path="/">

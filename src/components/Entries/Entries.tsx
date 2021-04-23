@@ -84,10 +84,10 @@ const Entries: React.FC<EntriesType> = ({
                 date,
               });
 
-              setCatagorie("");
-              setAmount(null);
+              setCatagorie("")
+              setAmount(null)
             } catch (error) {
-              console.log("Error", error);
+              console.log("Error", error)
             }
           }}
         >

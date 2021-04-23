@@ -37,18 +37,19 @@ const EntriesItems: React.FC<EntriesItemsType> = ({
   updateEntry,
   deleteEntry,
   entries,
+  isLoadingEntries,
 }) => {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const classes = useStyles();
+  const [page, setPage] = React.useState(0)
+  const [rowsPerPage, setRowsPerPage] = React.useState(5)
+  const classes = useStyles()
   const { userId, date } = useParams();
   let total: number = entries.reduce((acc, item) => {
-    return acc + Number(item.amount);
-  }, 0);
+    return acc + Number(item.amount)
+  }, 0)
 
   const rows = entries.map((e) =>
     createData(e.id, e.catagorie, e.amount, e.date)
-  );
+  )
 
   useEffect(() => {
     getEntries(userId, date);
@@ -56,12 +57,12 @@ const EntriesItems: React.FC<EntriesItemsType> = ({
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
-  };
+  }
 
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
+    setRowsPerPage(+event.target.value)
+    setPage(0)
+  }
   return (
     <Box display="flex" justifyContent="center" flexDirection="column">
       <h2>Day spending: </h2>
@@ -81,6 +82,7 @@ const EntriesItems: React.FC<EntriesItemsType> = ({
                 {...{ userId }}
                 {...{ updateEntry }}
                 {...{ deleteEntry }}
+                {...{isLoadingEntries}}
          
               />
             ))}
