@@ -10,6 +10,7 @@ import {
   deleteEntry,
 } from "../modules/entries/entriesOperation";
 import Layout from "./Layout";
+import "./style.scss";
 
 const MainContent = ({
   user,
@@ -21,21 +22,23 @@ const MainContent = ({
   updateEntry,
   deleteEntry,
 }) => {
-  const [isLogin, setIslogin] = useState(ApiAuth.isLoggedIn())
+  const [isLogin, setIslogin] = useState(ApiAuth.isLoggedIn());
 
-   useEffect(() => {
+  useEffect(() => {
     window.addEventListener("click", (e: MouseEvent) => {
-      if(e.target.classList.contains('logout')) {
-        setIslogin(false)     
+      if (e.target.classList.contains("logout")) {
+        setIslogin(false);
       }
-    })
-   },[]) 
+    });
+  }, []);
   return (
-    <Layout> 
-    <Box mb={5}>
-      {isLogin? (
+    <Layout>
+      <Box mb={5} className="main-content">
+        {isLogin ? (
           isLoadingUser ? (
-            <Box><img src="/load.gif" alt="loader"/></Box>
+            <Box>
+              <img src="/load.gif" alt="loader" />
+            </Box>
           ) : (
             <Entries
               {...{ user }}
@@ -47,13 +50,12 @@ const MainContent = ({
               {...{ deleteEntry }}
             />
           )
-
-      ) : (
-        <Box display="flex" justifyContent="center" >
-            <img src="/budget.png" alt="budget"/>
-        </Box>
-      )}
-    </Box>
+        ) : (
+          <Box display="flex" className="budet-bg">
+            <img src="/budget.png" alt="budget" />
+          </Box>
+        )}
+      </Box>
     </Layout>
   );
 };

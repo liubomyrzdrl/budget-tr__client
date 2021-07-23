@@ -1,12 +1,10 @@
 .container {
   width: 70%;
-  margin: 0 auto;
- 
+  margin: 0 auto; 
   &__logo {
     cursor: pointer;
-    transform: translateY(25%);
-    width: 200px;
-    height: 100px;
+    width: 100px;
+    height: 27px;
     img {
       width: 100%;
       height: 100%;
@@ -14,25 +12,25 @@
   }
 }
 
+.login-container {
+  width: 400px;
+  height: 400px;
+}
+.register-container {
+  width: 400px;
+  height: 400px;
+}
+
 @media screen and (max-width: 1650px) {
   .container {
     width: 80%;
-    &__logo {
-      cursor: pointer;
-      transform: translateY(25%);
-      width: 170x;
-      height: 70px;
-      img {
-        width: 100%;
-        height: 100%;
-      }
-    }
   }
 }
 
 .footer-info {
   padding-left: 80%;
   padding-top: 3%;
+  color: #fff;
 }
 
 @media screen and (max-width: 1420px) {
@@ -49,13 +47,6 @@
     flex-direction: column !important;
     &_data {
       width: 80% !important;
-    }
-  }
-}
-@media screen and (max-width: 1065px) {
-  .mortage-table-container {
-    &_data {
-      width: 100% !important;
     }
   }
 }
@@ -80,9 +71,16 @@
 }
 
 @media screen and (max-width: 411px) {
-  .container {
-  //  margin-bottom: 3% !important;
+  .login-container {
+    width: 300px;
+    height: 300px;
   }
+
+  .register-container {
+    width: 300px;
+    height: 300px;
+  }
+
   .footer-info {
     padding-top: 8%;
     padding-left: 50%;

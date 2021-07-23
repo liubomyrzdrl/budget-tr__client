@@ -1,6 +1,29 @@
+.entries-container {
+    &__form {
+        display: flex;
+    }
+    &__date-amount {
+        margin-right: 20%;
+    }
+}
 .total-spend {
     margin-left: 11%;
 }
 .table-pagination {
     width: 60%;
+}
+
+@media screen and (max-width: 650px) {
+    .entries-container {
+        &__form {
+            display: flex;
+            flex-direction: column;
+        }
+        &__date-amount {
+            margin-right: 0;
+        }
+    }
+    .entries-field {
+        margin-top: 4%;
+    }
 }

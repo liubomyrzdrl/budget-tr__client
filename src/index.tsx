@@ -3,15 +3,13 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
+import "./scss/null.scss";
 import reportWebVitals from "./reportWebVitals";
-import MainRoute from "./components/Router";
-import Main from "./pages/Main"
+import Main from "./pages/Main";
 import store from "./store/createState";
 
-
-
 ReactDOM.render(
-  <BrowserRouter >
+  <BrowserRouter>
     <Provider store={store}>
       <Main />
     </Provider>

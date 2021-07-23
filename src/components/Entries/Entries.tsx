@@ -6,6 +6,7 @@ import { Formik, Form } from "formik";
 import { Route, useHistory } from "react-router-dom";
 import EntriesList from "./EntriesList";
 import { EntrySingleType, EntrieType, UserSingleType } from "../../types";
+import "./entries.scss";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -68,7 +69,7 @@ const Entries: React.FC<EntriesType> = ({
 
   return (
     <Box>
-      <Box display="flex" justifyContent="center" >
+      <Box className="entries-container" >
         <Formik
           initialValues={{
             date:"",
@@ -93,10 +94,9 @@ const Entries: React.FC<EntriesType> = ({
         >
           {(props) => (
             <Form>
-              <Box display="flex">
-                <Box mr={25}>
-                  <TextField
-            
+              <Box  className="entries-container__form">
+                <Box className="entries-container__date-amount entries-field">
+                  <TextField            
                     id="date"
                     label="Trecker"
                     onChange={handeleDate}
@@ -111,10 +111,11 @@ const Entries: React.FC<EntriesType> = ({
                 <Box
                   display="flex"
                   flexDirection="column"
-                  justifyContent="center"
-                  alignItems="center"
+      
+                 
+                  className="entries-field"
                 >
-                  <Box mb={3}>
+                  <Box mb={3} className="entries-field">
                     <TextField
                       label="amount"
                       onChange={handeleAmount}
@@ -128,8 +129,9 @@ const Entries: React.FC<EntriesType> = ({
                     />
                   </Box>
 
-                  <Box mb={3}>
+                  <Box mb={3} className="entries-field">
                     <TextField
+                    
                       label="Catagory"
                       onChange={handeleCatagorie}
                       value={catagorie}

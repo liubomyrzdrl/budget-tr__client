@@ -1,14 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
 import { Box } from "@material-ui/core";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import green from "@material-ui/core/colors/green";
 import { connect } from "react-redux";
 import "../scss/style.scss";
 import { UserSingleType } from "../types";
 import { getUser } from "../modules/user/userOperations";
 import { ApiAuth } from '../api'
-import './style.scss'
 
 type HeaderType = {
   user: UserSingleType;
@@ -16,36 +15,33 @@ type HeaderType = {
   getUser: any;
 };
 
-const Header: React.FC<HeaderType> = ({ user, isLoading, getUser }) => {
-  const history =  useHistory()
+const Header: React.FC<HeaderType> = ({ user, isLoading }) => {
   const [isLogin, setIslogin] = useState(ApiAuth.isLoggedIn())
 
 
   if (isLoading) {
-    console.log('USER', user)
     return <div>Loading...</div>;
   }
 
-  const handleLogout = () => {  
-    console.log('FORM HEADER', ApiAuth.isLoggedIn())    
+  const handleLogout = () => {    
     setIslogin(ApiAuth.logout())   
   };
 
   const auth = (
-    <Box display="flex" alignContent="center">
+    <Box  className="container__auth"  alignContent="center">
       <Link to="/register">
         <Box>Register</Box>
       </Link>
-      <Box ml={4}>
+      <Box className="container__login">
         <Link to="/login">
           <Box>Login</Box>
         </Link>
       </Box>
     </Box>
-  );
+  )
 
   return (
-    <Box bgcolor={green[200]} width="100%" height="120px" color="text.primary">
+    <Box bgcolor={green[200]} width="100%" height="120px" color="text.primary" display="flex" alignItems="center">
       <Box
         className="container"
         display="flex"
@@ -56,14 +52,15 @@ const Header: React.FC<HeaderType> = ({ user, isLoading, getUser }) => {
           <Link to="/">
             <img src="/morimage.png" alt="Logo" />
           </Link>
+          
         </Box>
         {isLogin ? (
           isLoading ? <div>Loading ...</div> : (
-          <Box display="flex" alignContent="center">
+          <Box className="container__auth">
             <Box>{user.username}</Box>
-            <div  className="logout" onClick={handleLogout}>
+            <Box  className="logout" onClick={handleLogout}>
               Logout
-            </div>
+            </Box>
           </Box>
           )
         ) : (

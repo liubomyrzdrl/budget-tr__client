@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Box, Button, TextField, makeStyles } from "@material-ui/core";
 import red from "@material-ui/core/colors/red";
 import { Formik, Form, FormikHelpers } from "formik";
-import FormField from "../components/Form/FromField";
 import { connect } from "react-redux";
 import { register } from "../modules/auth/authOperations";
 import { useHistory, Link } from "react-router-dom";
@@ -77,8 +76,7 @@ const Register: React.FC<AuthRegisterType> = ({ register, isLoading, isError, er
     > 
       <AuthHeader />
       <Box
-        width={400}
-        height={400}
+        className="register-container"
         border="1px solid"
         flexDirection="column"
         display="flex"

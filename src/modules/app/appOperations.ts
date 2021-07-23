@@ -1,10 +1,10 @@
-import { ApiAuth } from '../../api/index';
-import { initStart, initSuccess, initError } from './appActions';
-import { userOperations } from '../user';
-import { ThunkAction } from 'redux-thunk';
-import { UserSingleType } from '../../types';
-import { Action } from 'redux';
-import { Dispatch } from 'react';
+import { ApiAuth } from "../../api/index";
+import { initStart, initSuccess, initError } from "./appActions";
+import { userOperations } from "../user";
+import { ThunkAction } from "redux-thunk";
+import { UserSingleType } from "../../types";
+import { Action } from "redux";
+import { Dispatch } from "react";
 
 export type AppThunkType = ThunkAction<
   Promise<void>,
@@ -16,15 +16,12 @@ export type AppThunkType = ThunkAction<
 export function init(): AppThunkType {
   return async function initFlow(dispatch: Dispatch<any>) {
     try {
-      dispatch(initStart());
-
+      dispatch(initStart())
       ApiAuth.init();
-      await dispatch(userOperations.getUser());
-
-      dispatch(initSuccess());
-
+      await dispatch(userOperations.getUser())
+      dispatch(initSuccess())
     } catch (err) {
-      dispatch(initError());
+      dispatch(initError())
     }
   };
 }

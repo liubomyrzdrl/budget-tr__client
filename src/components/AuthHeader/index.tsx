@@ -17,7 +17,7 @@ const AuthHeader = () => {
     >
       <Box ml={23}>
         <Link to="/ ">
-          <Box width={150} height={100} className="img-auth-header">
+          <Box width={120} height={28} className="img-auth-header">
             <img className="img-auth-header__logo" src="/morimage.png" alt="" />
           </Box>
         </Link>
