@@ -77,11 +77,11 @@ export const ApiAuth = {
   },
 
   register(user: UserSingleType): Promise<ApiAuthType> {
-    return axios.post(`https://budget-el.herokuapp.com/auth/register`, user);
+    return axios.post(`https://budj.herokuapp.com/auth/register`, user);
   },
 
   login(user: UserSingleType): Promise<ApiAuthType> {
-    return axios.post(`https://budget-el.herokuapp.com/auth/login`, user);
+    return axios.post(`https://budj.herokuapp.com/auth/login`, user);
   },
   logout() {
     window.localStorage.removeItem("token");
@@ -92,6 +92,6 @@ export const ApiAuth = {
 
 export const ApiAccount = {
   get(): Promise<UserType> {
-    return axios.get("https://budget-el.herokuapp.com/account");
+    return axios.get("https://budj.herokuapp.com/account");
   },
 };
