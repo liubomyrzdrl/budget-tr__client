@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
-import { Box } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Box, Button } from "@material-ui/core";
+import { Link, useHistory } from "react-router-dom";
 import green from "@material-ui/core/colors/green";
 import { connect } from "react-redux";
 import "../scss/style.scss";
@@ -17,7 +17,7 @@ type HeaderType = {
 
 const Header: React.FC<HeaderType> = ({ user, isLoading }) => {
   const [isLogin, setIslogin] = useState(ApiAuth.isLoggedIn())
-
+  const history = useHistory()
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -25,6 +25,7 @@ const Header: React.FC<HeaderType> = ({ user, isLoading }) => {
 
   const handleLogout = () => {    
     setIslogin(ApiAuth.logout())   
+    history.push('/')
   };
 
   const auth = (
@@ -58,9 +59,10 @@ const Header: React.FC<HeaderType> = ({ user, isLoading }) => {
           isLoading ? <div>Loading ...</div> : (
           <Box className="container__auth">
             <Box>{user.username}</Box>
-            <Box  className="logout" onClick={handleLogout}>
+            <div className="logout" onClick={handleLogout}>
               Logout
-            </Box>
+            </div>
+      
           </Box>
           )
         ) : (

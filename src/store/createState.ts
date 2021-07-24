@@ -1,9 +1,7 @@
 import { createStore, applyMiddleware, Store, CombinedState } from "redux";
 import thunk from "redux-thunk";
-import logger from "redux-logger";
 import reducer from "../modules";
 import { Action } from "redux-actions";
-import { GetEntriesSuccessPayload } from "../modules/entries/entriesActions";
 import {  entriesActions } from "../modules/entries";
 import { GetUserSuccessPayload } from "../modules/user/userActions";
 import { EntryStateType } from "../modules/entries/entriesReducer";
@@ -21,6 +19,6 @@ export type MainStateType = Store<
   Action<typeof entriesActions> | Action<GetUserSuccessPayload> & Action<void>
 >
 
-const state = createStore(reducer, applyMiddleware(thunk, logger))
+const state = createStore(reducer, applyMiddleware(thunk))
 
 export default state;

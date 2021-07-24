@@ -33,21 +33,21 @@ type ApiEntryUpdateType = {
 export const ApiEntries = {
   fetchEntries(userId: number, date: string): Promise<AuthEntrieDataType> {
     return axios.get(
-      `https://budget-el.herokuapp.com/entries/get/?userId=${userId}&date=${date}`
+      `https://budj.herokuapp.com/entries/get/?userId=${userId}&date=${date}`
     );
   },
 
   createEntry(entrie: EntrieType): Promise<ApiEntryType> {
-    return axios.post("https://budget-el.herokuapp.com/entries/create", entrie);
+    return axios.post("https://budj.herokuapp.com/entries/create", entrie);
   },
 
   updateEntry(entrie: EntrieType): Promise<ApiEntryUpdateType> {
-    return axios.put(`https://budget-el.herokuapp.com/entries/update`, entrie);
+    return axios.put(`https://budj.herokuapp.com/entries/update`, entrie);
   },
 
   deleteEntries(id: number) {
     return axios.delete(
-      `https://budget-el.herokuapp.com/entries/delete/?id=${id}`
+      `https://budj.herokuapp.com/entries/delete/?id=${id}`
     );
   },
 };
