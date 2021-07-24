@@ -26,7 +26,6 @@ const INITIAL_STATE = {
 
 export default handleActions<UserStateType, GetUserSuccessPayload>({
     [getUserStart.toString()]: (state): UserStateType => {
-      console.log('STATE', state);
       return {
         ...state,            
           isLoading: true,
