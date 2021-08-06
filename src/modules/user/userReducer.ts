@@ -1,9 +1,7 @@
 import { handleActions, Action, combineActions } from 'redux-actions'
 import { getUserStart, getUserSuccess, getUserError, GetUserSuccessPayload  } from './userActions';
 import { loginSuccess, registerSuccess } from '../auth/authActions';
-import * as appActions from '../app/appActions';
-import { authActions } from '../auth';
-import { UserType, UserSingleType } from '../../types';
+import { UserSingleType } from '../../types';
 
 
 export interface UserStateType {

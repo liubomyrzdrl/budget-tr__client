@@ -1,7 +1,7 @@
 import { ApiAccount } from '../../api'
 import { ThunkAction } from "redux-thunk";
 import { getUserStart, getUserSuccess, getUserError } from './userActions';
-import { UserType, UserSingleType } from '../../types';
+import { UserSingleType } from '../../types';
 import { Dispatch } from "redux";
 import { Action } from "redux-actions";
 import { UserStateType } from './userReducer';

@@ -18,8 +18,6 @@ import {
   DeleteEntrySuccessPayload,
   CombinedEntriesPayloads,
 } from "./entriesActions";
-import { EntrieType, EntrySingleType } from "../../types";
-
 
 export interface EntryStateType {
   items: Array<any>;
