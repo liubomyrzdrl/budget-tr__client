@@ -98,7 +98,6 @@ const EntryItem: React.FC<EntryItemType> = memo(
             <TableCell>
               <TextField
                 id="standard-size-small"
-                // value={catagorieData ? catagorieData : ""}   
                 value={catagorieData}         
                 helperText={
                   catagorieData === "" && "Empty input is not allowed"
